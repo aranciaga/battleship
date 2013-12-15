@@ -17,5 +17,5 @@ class Game_functions{
 		int checkPos(int number, string letter);
 		void clear_screen();
 		void setShip(int type, char pos, char letter, int number);
-		void ship_menu();
+		void ship_menu(string type, string IP_ADDR);
 };

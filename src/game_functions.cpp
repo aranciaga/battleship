@@ -177,7 +177,7 @@ int Game_functions::getLetter(char letter){
 
 
 
-void Game_functions::ship_menu(){
+void Game_functions::ship_menu(string type, string IP_ADDR){
 	cout << "Hi, What's your name?:";
 	cin >> player_name;
 	cout << "Nice to meet you " << player_name << endl;
@@ -244,12 +244,10 @@ void Game_functions::ship_menu(){
 	clear_screen();
 	cout << "Let's start the game..." << endl;
 	
-/*
 	if (type=="server"){
-		net.make_server();
+		nett.make_server();
 	} else if(type=="client"){
-		net.connect_to_server(IP_ADDR.c_str());
+		nett.connect_to_server(IP_ADDR.c_str());
 	}
-*/
 
 }

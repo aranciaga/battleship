@@ -78,13 +78,8 @@ const char* logo[] = {
 }
 int main(){
 	main_menu();
-	//ship_menu();
 
-	if (type=="server"){
-		net.make_server();
-	} else if(type=="client"){
-		net.connect_to_server(IP_ADDR.c_str());
-	}
+	gf.ship_menu(type, IP_ADDR);
 
 	return 0;
 }
