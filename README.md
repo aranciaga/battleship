@@ -11,11 +11,12 @@ Installation
 
 For now, i only tested the game on GNU/Linux.
 
-$ make
-# make install
+[$] make
+
+[#] make install
 
 if you want to delete the game just type:
 
-# make uninstall
+[#] make uninstall
 
 Have fun!
