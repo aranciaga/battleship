@@ -95,6 +95,8 @@ void Network::connect_to_server(const char* ip){
 			parseRcv(s,sock);
 			gfd.showBoard();
 			cout << "Turn is for player one" << endl;
+		} else {
+			cout << "Player has been disconnected" << endl;
 		}
     }
      
