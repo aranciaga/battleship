@@ -62,23 +62,26 @@ const char* logo[] = {
 				}
 				break;
 			default:
-				gf.clear_screen();
-				for (int i=0; i<11; i++){
-					cout << logo[i] << endl;
-				}
-				cout << "Choose your option:" << endl;
-				cout << "[1] Create server" << endl;
-				cout << "[2] Connect to host" << endl;
-				cout << "[3] How to play" << endl;
-				cout << "> ";
-				cin >> option;
+				do{
+					gf.clear_screen();
+					for (int i=0; i<11; i++){
+						cout << logo[i] << endl;
+					}
+					cout << "Choose your option:" << endl;
+					cout << "[1] Create server" << endl;
+					cout << "[2] Connect to host" << endl;
+					cout << "[3] How to play" << endl;
+					cout << "> ";
+					cin >> option;
+					cin.clear();
+					cin.ignore(256, '\n');
+				} while(!cin);
 				break;
 		}
 	}
 }
 int main(){
 	main_menu();
-
 	gf.ship_menu(type, IP_ADDR);
 
 	return 0;

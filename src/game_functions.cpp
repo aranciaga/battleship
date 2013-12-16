@@ -11,11 +11,11 @@ int filas[25] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,2
 char grid[25][25] ={
 {'.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.'},
 {'.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.'},
+{'.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'A', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.'},
 {'.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.'},
 {'.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.'},
 {'.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.'},
-{'.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.'},
-{'.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.'},
+{'.', '.', '.', '.', '.', '.', '.', 'A', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.'},
 {'.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.'},
 {'.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.'},
 {'.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.'},
@@ -133,7 +133,6 @@ int Game_functions::checkPos(int number, string letter){
 	}
 }
 
-
 int Game_functions::countShips(int client_sock){
 	int count = 0;
 
@@ -168,14 +167,22 @@ void Game_functions::showBoard(){
 }
 
 int Game_functions::getLetter(char letter){
+	int ret_in = 666;
 	for (int i=0; i<24; i++){
 		if (toupper(letter)==abc[i]){
-			return i; 
+			ret_in=i; 
 		}
 	}
+	return ret_in;
 }
 
-
+bool Game_functions::verPos(char ch){
+	if (ch=='v' || ch=='h'){
+		return true;
+	} else {
+		return false;
+	}
+}
 
 void Game_functions::ship_menu(string type, string IP_ADDR){
 	cout << "Hi, What's your name?:";
@@ -184,62 +191,158 @@ void Game_functions::ship_menu(string type, string IP_ADDR){
 	showBoard();
 	cout << "Choose the position for your ships" << endl;
 	cout << "#1 Aircraft" << endl;
-	cout << "Letter: ";
-	cin >> aircraft_letter;
-	cout << "Number: ";
-	cin >> aircraft_number;
-	cout << "Pos (v for vertical, h for horizontal):";
-	cin >> aircraft_pos;
+
+	do{
+		cout << "Letter: ";
+		cin.clear();
+		cin.ignore(256, '\n');
+		cin >> aircraft_letter;
+	} while(getLetter(aircraft_letter)==666);
+
+	do{
+		cout << "Number: ";
+		cin.clear();
+		cin.ignore(256, '\n');
+		cin >> aircraft_number;
+	} while(!cin || aircraft_number>24 || aircraft_number<0);
+
+	do{
+		cout << "Pos (v for vertical, h for horizontal):";
+		cin.clear();
+		cin.ignore(256, '\n');
+		cin >> aircraft_pos;
+	} while(!cin || verPos(aircraft_pos)==false);
+
 	setShip(Aircraft, aircraft_pos, aircraft_letter, aircraft_number);
 	showBoard();
 
 	cout << "#1 Battleship" << endl;
-	cout << "Letter: ";
-	cin >> battleship1_letter;
-	cout << "Number: ";
-	cin >> battleship1_number;
-	cout << "Pos (v for vertical, h for horizontal):";
-	cin >> battleship1_pos;
+
+	do{
+		cout << "Letter: ";
+		cin.clear();
+		cin.ignore(256, '\n');
+		cin >> battleship1_letter;
+	} while(getLetter(battleship1_letter)==666);
+
+	do{
+		cout << "Number: ";
+		cin.clear();
+		cin.ignore(256, '\n');
+		cin >> battleship1_number;
+	} while(!cin || battleship1_number>24 || battleship1_number<0);
+
+	do{
+		cout << "Pos (v for vertical, h for horizontal):";
+		cin.clear();
+		cin.ignore(256, '\n');
+		cin >> battleship1_pos;
+	} while(!cin || verPos(battleship1_pos)==false);
+
 	setShip(Battleship, battleship1_pos, battleship1_letter, battleship1_number);
 	showBoard();
 
 	cout << "#2 Battleship" << endl;
-	cout << "Letter: ";
-	cin >> battleship2_letter;
-	cout << "Number: ";
-	cin >> battleship2_number;
-	cout << "Pos (v for vertical, h for horizontal):";
-	cin >> battleship2_pos;
+
+	do{
+		cout << "Letter: ";
+		cin.clear();
+		cin.ignore(256, '\n');
+		cin >> battleship2_letter;
+	} while(getLetter(battleship2_letter)==666);
+
+	do{
+		cout << "Number: ";
+		cin.clear();
+		cin.ignore(256, '\n');
+		cin >> battleship2_number;
+	} while(!cin || battleship2_number>24 || battleship2_number<0);
+
+	do{
+		cout << "Pos (v for vertical, h for horizontal):";
+		cin.clear();
+		cin.ignore(256, '\n');
+		cin >> battleship2_pos;
+	} while(!cin || verPos(battleship2_pos)==false);
+
 	setShip(Battleship, battleship2_pos, battleship2_letter, battleship2_number);
 	showBoard();
 
 	cout << "#1 Cruiser" << endl;
-	cout << "Letter: ";
-	cin >> cruiser_letter;
-	cout << "Number: ";
-	cin >> cruiser_number;
-	cout << "Pos (v for vertical, h for horizontal):";
-	cin >> cruiser_pos;
+
+	do{
+		cout << "Letter: ";
+		cin.clear();
+		cin.ignore(256, '\n');
+		cin >> cruiser_letter;
+	} while(getLetter(cruiser_letter)==666);
+
+	do{
+		cout << "Number: ";
+		cin.clear();
+		cin.ignore(256, '\n');
+		cin >> cruiser_number;
+	} while(!cin || cruiser_number>24 || cruiser_number<0);
+
+	do{
+		cout << "Pos (v for vertical, h for horizontal):";
+		cin.clear();
+		cin.ignore(256, '\n');
+		cin >> cruiser_pos;
+	} while(!cin || verPos(cruiser_pos)==false);
+
 	setShip(Cruiser, cruiser_pos, cruiser_letter, cruiser_number);
 	showBoard();
 
 	cout << "#1 Frigate" << endl;
-	cout << "Letter: ";
-	cin >> frigate1_letter;
-	cout << "Number: ";
-	cin >> frigate1_number;
-	cout << "Pos (v for vertical, h for horizontal):";
-	cin >> frigate1_pos;
+
+	do{
+		cout << "Letter: ";
+		cin.clear();
+		cin.ignore(256, '\n');
+		cin >> frigate1_letter;
+	} while(getLetter(frigate1_letter)==666);
+
+	do{
+		cout << "Number: ";
+		cin.clear();
+		cin.ignore(256, '\n');
+		cin >> frigate1_number;
+	} while(!cin || frigate1_number>24 || frigate1_number<0);
+
+	do{
+		cout << "Pos (v for vertical, h for horizontal):";
+		cin.clear();
+		cin.ignore(256, '\n');
+		cin >> frigate1_pos;
+	} while(!cin || verPos(frigate1_pos)==false);
+
 	setShip(Frigate, frigate1_pos, frigate1_letter, frigate1_number);
 	showBoard();
 
 	cout << "#1 Submarine" << endl;
-	cout << "Letter: ";
-	cin >> submarine_letter;
-	cout << "Number: ";
-	cin >> submarine_number;
-	cout << "Pos (v for vertical, h for horizontal):";
-	cin >> submarine_pos;
+
+	do{
+		cout << "Letter: ";
+		cin.clear();
+		cin.ignore(256, '\n');
+		cin >> submarine_letter;
+	} while(getLetter(submarine_letter)==666);
+
+	do{
+		cout << "Number: ";
+		cin.clear();
+		cin.ignore(256, '\n');
+		cin >> submarine_number;
+	} while(!cin || submarine_number>24 || submarine_number<0);
+
+	do{
+		cout << "Pos (v for vertical, h for horizontal):";
+		cin.clear();
+		cin.ignore(256, '\n');
+		cin >> submarine_pos;
+	} while(!cin || verPos(submarine_pos)==false);
+
 	setShip(Submarine, submarine_pos, submarine_letter, submarine_number);
 	clear_screen();
 	cout << "Let's start the game..." << endl;

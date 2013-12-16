@@ -42,7 +42,7 @@ void Network::make_server(){
 	puts("Player two connected");
 	gfd.showBoard();
 
-	while(true){
+	while(true){	
 
 		if ( (read_size = recv(client_sock, game_message, 1024-1, 0)) > 0 ){
 			game_message[read_size] = '\0';
@@ -53,7 +53,10 @@ void Network::make_server(){
 			parseRcv(s,client_sock);
 			gfd.showBoard();
 			cout << "Turn is for player two" << endl;
-			}
+		} else {
+			cout << "Player has been disconnected." << endl;
+			exit(1);
+		}
 	}
 }
 

@@ -18,4 +18,5 @@ class Game_functions{
 		void clear_screen();
 		void setShip(int type, char pos, char letter, int number);
 		void ship_menu(string type, string IP_ADDR);
+		bool verPos(char ch);
 };
