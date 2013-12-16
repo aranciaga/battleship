@@ -55,9 +55,11 @@ void Network::make_server(){
 			cout << "Turn is for player two" << endl;
 		} else {
 			cout << "Player has been disconnected." << endl;
-			exit(1);
+			break;
 		}
 	}
+	close(client_sock);
+	
 }
 
 void Network::connect_to_server(const char* ip){
@@ -97,6 +99,7 @@ void Network::connect_to_server(const char* ip){
 			cout << "Turn is for player one" << endl;
 		} else {
 			cout << "Player has been disconnected" << endl;
+			break;
 		}
     }
      
