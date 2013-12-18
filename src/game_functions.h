@@ -19,4 +19,6 @@ class Game_functions{
 		void setShip(int type, char pos, char letter, int number);
 		void ship_menu(string type, string IP_ADDR);
 		bool verPos(char ch);
+		bool canSetShip(int pX, int pY, int type, char pos);
+		bool checkCollide(int pX, int pY, int type, char pos);
 };

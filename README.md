@@ -19,4 +19,9 @@ if you want to delete the game just type:
 
 [#] make uninstall
 
+OR using installer and uninstaller:
+
+[#] ./installer.sh
+[#] ./uninstaller.sh
+
 Have fun!

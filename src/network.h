@@ -11,7 +11,7 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 
-#define CON_PORT 5154
+#define CON_PORT 5454
 
 using namespace std;
 

@@ -37,7 +37,7 @@ const char* logo[] = {
 "\\  O  O  O  O  O  O  O  O    /",
 " \\__________________________/",
 "  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
-"Battleship v0.5 @ by Rainbow",
+"Battleship v1.0 @ by Rainbow",
 };
 
 

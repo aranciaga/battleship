@@ -7,7 +7,7 @@ char delimiter = '|';
 string letterRecv, numberRecv, mRecv, previousMessage, letter, number, se;
 int newNumber, previousNumber;
 char game_message[1024], previousLetter;
-bool hello;
+bool hello = true;
 string waterMessage = "Water! you missed.";
 string boomMessage = "Boom! you hit.";
 string helloMessage = "Hello";
@@ -128,16 +128,20 @@ void Network::parseRcv(string s, int client_sock){
 		if (mRecv=="B"){
 			cout << boomMessage << endl;
 		} else if(mRecv=="O_SERVER_IM_CLIENT" || mRecv=="H") {
-			cout << helloMessage << endl;
-			hello = true;
+			if (hello==true){
+				cout << helloMessage << endl;
+				hello = false;
+			}			
 		} else {
-			cout << waterMessage << endl;
+			if(hello==false){
+				cout << waterMessage << endl;
+			}
 		}
 
 		if (gfd.checkPos(newNumber,letterRecv.c_str())==1){
 			previousMessage = boomMessage;
 			gfd.killShip(letterRecv.c_str()[0], newNumber);
-		} else if (hello){
+		} else if (hello==true){
 			previousMessage = helloMessage;
 		} else {
 			previousMessage = waterMessage;
