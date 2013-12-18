@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=Battleship
-Comment=Play battleship with your friend online!
-Exec=battleship
-Version=1.0
-Terminal=true
-Type=Application
-Icon=/usr/share/battleship/icon/battleship.png
-Categories=Game;
